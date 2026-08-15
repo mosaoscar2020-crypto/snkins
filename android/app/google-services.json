@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "701220082008",
+    "firebase_url": "https://hack-fa8fb-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "hack-fa8fb",
+    "storage_bucket": "hack-fa8fb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:701220082008:android:da58e1a6d71991b51f552d",
+        "android_client_info": {
+          "package_name": "com.livescreen.ultraspeed"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIGyV8i8mIpHQI2uffoaBjs9kqrnMjloM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

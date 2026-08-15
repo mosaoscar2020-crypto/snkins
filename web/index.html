@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LiveScreen</title>
+<style>
+body{margin:0;background:#06090d;color:#fff;font-family:Arial;min-height:100vh;display:grid;place-items:center}
+main{width:min(1100px,95vw)}h1{margin-bottom:4px}.sub{color:#9ca3af;margin-bottom:16px}
+#video{width:100%;aspect-ratio:16/9;background:#000;border-radius:16px;object-fit:contain}
+.bar{display:flex;gap:12px;align-items:center;margin-top:12px}.dot{width:10px;height:10px;background:#22c55e;border-radius:50%}
+button{background:#2563eb;color:#fff;border:0;padding:10px 15px;border-radius:10px}
+</style>
+</head>
+<body><main>
+<h1>📡 LiveScreen</h1><div class="sub">بث مباشر منخفض التأخير</div>
+<video id="video" autoplay playsinline></video>
+<div class="bar"><span class="dot"></span><span id="status">جاري الاتصال...</span><button id="fs">ملء الشاشة</button></div>
+<script type="module">
+import {Room,RoomEvent,Track} from "https://cdn.jsdelivr.net/npm/livekit-client@2.15.4/+esm";
+const video=document.getElementById("video"), status=document.getElementById("status");
+const TOKEN_ENDPOINT="https://live-1corft.sandbox.livekit.io/token?role=viewer";
+const LIVEKIT_URL="wss://live-z32agtvo.livekit.cloud";
+const room=new Room({adaptiveStream:false,dynacast:false});
+room.on(RoomEvent.TrackSubscribed,(track)=>{
+  if(track.kind==="video" && track.source===Track.Source.ScreenShare){
+    video.srcObject=new MediaStream([track.mediaStreamTrack]);
+    status.textContent="🟢 مباشر";
+  }
+});
+try{
+ const token=await fetch(TOKEN_ENDPOINT).then(r=>r.text());
+ await room.connect(LIVEKIT_URL,token.trim());
+ status.textContent="متصل — بانتظار البث";
+}catch(e){status.textContent="تعذر الاتصال";}
+document.getElementById("fs").onclick=()=>video.requestFullscreen?.();
+</script>
+</main></body></html>

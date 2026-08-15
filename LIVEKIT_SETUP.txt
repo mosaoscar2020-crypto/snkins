@@ -1,0 +1,13 @@
+LiveScreen - إعدادات المشروع
+
+LiveKit URL:
+wss://live-z32agtvo.livekit.cloud
+
+Development Token Server:
+https://live-1corft.sandbox.livekit.io
+
+LiveKit API Key:
+APItwrxAWuohjE8
+
+Firebase Project:
+hack-fa8fb
